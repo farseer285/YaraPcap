@@ -31,7 +31,7 @@ if osType == "Windows":
 		print "TCPFlow not found Please Check Path or Install (https://github.com/simsong/tcpflow)"
 		sys.exit()
 if osType == "Linux":
-	tcpFlowPath = "/usr/local/bin/tcpflow"
+	tcpFlowPath = "/usr/bin/tcpflow"
 	if not os.path.exists(tcpFlowPath):
 		print "TCPFlow Not Found, Please check path or Install (https://github.com/simsong/tcpflow)"
 		sys.exit()
@@ -75,7 +75,7 @@ class processPcap:
 		print pcap
 		shutil.copyfile(pcap, os.path.join(tmpDir, "raw.pcap"))
 		print "Processing PCAP File For HTTP Streams"
-		retcode = subprocess.call("(cd %s && %s -AH -r %s)"%(os.path.join(tmpDir), tcpFlowPath, "raw.pcap"), shell=True)
+		retcode = subprocess.call("(cd %s && %s -a -r %s)"%(os.path.join(tmpDir), tcpFlowPath, "raw.pcap"), shell=True)
 		return tmpDir
 		
 class yaraScan:
